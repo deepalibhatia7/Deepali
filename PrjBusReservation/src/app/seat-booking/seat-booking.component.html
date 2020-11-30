@@ -1,0 +1,15 @@
+<p>seat-booking works!</p>
+<!--<form #form="ngForm">
+    Enter your busid:<input type="number" name="Bus_id" [(ngModel)]="Bus.Bus_id" #Bus_id=ngModel>
+    Enter your No Of Tickets Booked:<input type="number" name="Available_number_of_seats" [(ngModel)]="Bus.Available_number_of_seats" #Available_number_of_seats=ngModel>
+</form>
+<button (onclick)="fetchdata(Busid,
+Ticketsbooked)" class="btn btn-primary" mdbWavesEffect>Bookticket</button>-->
+
+<form>
+    Enter your Bus Id:<input type="number" name="Bus_Id" #Bus_Id>
+    Enter your No of Tickets Booked:<input type="number" name="Available_number_of_seats" #Ticketsbooked>
+</form>
+
+<button (click)="fetchdata(Bus_Id.value,
+Ticketsbooked.value)" class="btn btn-primary" mdbWavesEffect>Bookticket</button>
