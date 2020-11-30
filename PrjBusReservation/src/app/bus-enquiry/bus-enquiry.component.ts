@@ -74,7 +74,7 @@ export class BusEnquiryComponent implements OnInit {
     localStorage.setItem('destination',form.destination);
     localStorage.setItem('Start_Date',form.startdate);
     localStorage.setItem('End_Date',form.enddate);
-    //this.router.navigate(['busSelect']);
+    this.router.navigate(['busSelect']);
   }
 
 }

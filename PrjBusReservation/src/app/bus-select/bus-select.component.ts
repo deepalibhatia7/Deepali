@@ -41,7 +41,27 @@ export class BusSelectComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+
+    sessionStorage.removeItem('Buses');
+    sessionStorage.removeItem('Buses');
+    this.source=localStorage.getItem('source');
+     this.destination=localStorage.getItem('destination');
+     this.Start_Date=localStorage.getItem('Start_Date');
+     this.End_Date=localStorage.getItem('End_Date');
+     this.isReturn=localStorage.getItem("bustype")=="roundtrip"?true:false;
+     this.busservice.searchBusList(this.destination,this.source).subscribe((data:any)=>
+     {this.returnBuses=data;
+     console.log(this.returnBuses);},(error)=>
+     {alert("Failed to fetch data from server");
+   });
+   if(this.isReturn)
+   {
+     this.busservice.searchBusList(this.destination,this.source).subscribe((data:any)=>
+       {this.returnBuses=data;
+       console.log(this.returnBuses);},
+       (error)=>{alert("Failed to fetch data from server");
+     });
+   }
     
   }
   // sessionStorage.removeItem('flight');
@@ -52,23 +72,23 @@ export class BusSelectComponent implements OnInit {
   //   this.End_Date=localStorage.getItem('End_Date');
   //   this.isReturn=localStorage.getItem("bustype")=="roundtrip"?true:false;
 
-  SearchBusList()
-  {
-    debugger;
-    this.busservice.searchBusList(this.destination,this.source).subscribe((data:any)=>
-      {this.returnBuses=data;
-      console.log(this.returnBuses);},(error)=>
-      {alert("Failed to fetch data from server");
-    });
-    if(this.isReturn)
-    {
-      this.busservice.searchBusList(this.destination,this.source).subscribe((data:any)=>
-        {this.returnBuses=data;
-        console.log(this.returnBuses);},
-        (error)=>{alert("Failed to fetch data from server");
-      });
-    }
-  }
+  // SearchBusList()
+  // {
+  //   debugger;
+  //   this.busservice.searchBusList(this.destination,this.source).subscribe((data:any)=>
+  //     {this.returnBuses=data;
+  //     console.log(this.returnBuses);},(error)=>
+  //     {alert("Failed to fetch data from server");
+  //   });
+  //   if(this.isReturn)
+  //   {
+  //     this.busservice.searchBusList(this.destination,this.source).subscribe((data:any)=>
+  //       {this.returnBuses=data;
+  //       console.log(this.returnBuses);},
+  //       (error)=>{alert("Failed to fetch data from server");
+  //     });
+  //   }
+  // }
 
   selectReturnBus(returnBus:Buses)
   {
@@ -89,6 +109,7 @@ export class BusSelectComponent implements OnInit {
   continue()
   {
     console.log("Hey");
+    this.router.navigate(['Login']);
   }
   setOrder(value:string)
   {

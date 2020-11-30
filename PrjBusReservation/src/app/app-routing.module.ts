@@ -13,7 +13,8 @@ import { SeatmapreservationComponent } from './seatmapreservation/seatmapreserva
 import { LoginService } from './Services/login.service';
 
 const routes: Routes = [
-  {path:'',component:BusEnquiryComponent},
+  {path:"",redirectTo:'/BusEnquiry',pathMatch:'full'},
+  {path:"BusEnquiry" , component:BusEnquiryComponent},
   {path:"busSelect",component:BusSelectComponent},
   {path:"AdminCrud",component:AdmincrudComponent},
   {path:"Aboutus",component:AboutusComponent},

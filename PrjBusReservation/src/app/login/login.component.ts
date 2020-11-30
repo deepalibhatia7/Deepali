@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 
          else
          {
-           this.userrouter.navigate(['/login']);
+           this.userrouter.navigate(['/Login']);
            this.err="Invalid Email_id or Password!!!";
          }
       });
@@ -60,5 +60,6 @@ export class LoginComponent implements OnInit {
       debugger;
       this.err = "Please enter valid creditianls!!!";
     }
+    this.userrouter.navigate(['SeatMapping']);
   }
 }

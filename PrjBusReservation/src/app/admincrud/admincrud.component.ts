@@ -19,6 +19,7 @@ export class AdmincrudComponent implements OnInit {
   //GET BUS DATA FROM DATABASE
   fetchdata()
   {
+    debugger;
     console.log("hai");
    this.busService.getBusData().subscribe((data:any)=>{this.bus=data;})
   }

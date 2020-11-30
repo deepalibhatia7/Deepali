@@ -1,4 +1,4 @@
-<!-- <p>bus-select works!</p>
+<p>bus-select works!</p>
 <p>bus-select works!</p>
 <div class="container">
 <div class="main">
@@ -11,9 +11,9 @@
                     </div>
                     
                 </div>
-                <div *ngFor="let b of buses">
-                    <!-- |orderBy: order:reverse2 -->
-                    <!-- <button type="button" class="list-group-item list-group-item-action" (click)="selectBus(bus)">
+                <div *ngFor="let b of buses|orderBy: order:reverse">
+                    <!--  -->
+                    <button type="button" class="list-group-item list-group-item-action" (click)="selectBus(bus)">
                         <div class="row gutter-row">
                             <div class="col gutter-col ">
                                 <div class="text-muted"><b>{{b.Bus_id}}</b></div>
@@ -40,9 +40,9 @@
                     </div>
                     
                 </div>
-                <div *ngFor="let bus of returnBuses"> -->
-                    <!-- |orderBy: order2:reverse2 -->
-                    <!-- <button type="button" class="list-group-item list-group-item-action"(click)="selectReturnBus()">
+                <div *ngFor="let bus of returnBuses|orderBy: order2:reverse2"> 
+                    <!--  -->
+                   <button type="button" class="list-group-item list-group-item-action"(click)="selectReturnBus()">
                         <div class="row gutter-row">
                             <div class="col gutter-col ">
                                 <div class="text-muted"><b>{{bus.Bus_Id}}</b></div>
@@ -61,6 +61,77 @@
             
         </div>
     </div>
-    <div class="row"><button mat-raised-button color="primary" (click)=SearchBusList() class="continue" data-toggle="modal" data-target="#myModal" *ngIf="selected && (returnSelected || (!returnSelected&&!isReturn))" >BOOK</button></div>     
+    div class="row"><button mat-raised-button color="Disabled" class="continue" data-toggle="modal" data-target="#myModal" *ngIf="selected && (returnSelected || (!returnSelected&&!isReturn))" >BOOK</button></div>      
 </div>
-</div> --> -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content" *ngIf="selected && (returnSelected || (!returnSelected&&!isReturn))">
+        <div class="modal-header">
+          <h2 class="modal-title">Confirm Booking</h2>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-borderless">
+                <tr>
+                    <th>
+                        Bus Details
+                    </th>
+                    <!-- <th>
+                        Economy
+                    </th>
+                    <th>
+                        Business
+                    </th> -->
+                </tr>
+                <tr *ngIf="isReturn" >
+                    Departure Bus
+                </tr>
+                <tr>
+                    <td>
+                        <h5>
+                            <b>{{busSelected| timeTransform: busSelected.Start_Date}}-{{busSelected| timeTransform:busSelected.End_Date}}</b>&nbsp;
+                            {{busSelected.source}}-{{busSelected.destination}}
+                        </h5>
+                        <h5>
+                            <b>{{busSelected.Bus_Id}}</b>
+                        </h5>
+                    </td>
+                    <!-- <td>
+                        <h5><b>&#8377;{{flightSelected.EconomyPrice}}</b></h5>
+                    </td>
+                    <td>
+                        <h5><b>&#8377;{{flightSelected.BusinessPrice}}</b></h5>
+                    </td> -->
+                </tr>
+                <tr *ngIf="isReturn" >
+                    Return Bus
+                </tr>
+                <tr *ngIf="isReturn">
+                    <td>
+                        <h5 class="mb-1">
+                            <mat-icon [inline]="true">schedule</mat-icon>
+                            <b>{{returnbusSelected| timeTransform: returnbusSelected.Start_Date}}-{{returnbusSelected.ArrivalTime| timeTransform:returnbusSelected.End_Date}}</b>&nbsp;
+                            <small class="text-muted">{{returnbusSelected.source}}-{{returnbusSelected.destination}}</small>
+                        </h5>
+                        <h5 class="mb-1">
+                            <mat-icon [inline]="true">Bus</mat-icon>
+                            <b>{{returnbusSelected.Bus_Id}}</b>
+                        </h5>
+                    </td>
+                    <!-- <td>
+                        <h5 class="mb-1"><b>&#8377;{{returnFlightSelected.EconomyPrice}}</b></h5>
+                    </td>
+                    <td>
+                        <h5 class="mb-1"><b>&#8377;{{returnFlightSelected.BusinessPrice}}</b></h5>
+                    </td> -->
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click)= "continue()">Confirm</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
